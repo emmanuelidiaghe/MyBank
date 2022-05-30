@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="center text-center pt-5 pb-5">
+    <h1 class="text-dark pb-4">MyBank</h1>
+    <h4 class="text-secondary pb-2">The financial institution for all your needs</h4>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <input type="button" class="submit btn btn-primary mr-5 ml-5" value="Sign In" onclick="@("window.location.href='" + @Url.Action("Login", "Accounts") + "'");" />
+        <input type="button" class="submit btn btn-primary mr-5 ml-5" value="Register" onclick="@("window.location.href='" + @Url.Action("Register", "Accounts") + "'");" />
+    </div>
+</div>

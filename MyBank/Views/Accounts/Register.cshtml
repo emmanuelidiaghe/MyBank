@@ -1,0 +1,52 @@
+﻿@model User;
+
+@{
+    ViewData["Title"] = "Registration Page";
+}
+
+@using (Html.BeginForm("Register", "Accounts", FormMethod.Post))
+
+{
+    <div class="appointment-form" id="appointment-form">
+        <h2>Registration Page</h2>
+        @if(Model != null)
+        {
+            @if (Model.loginErrorCheck) { <p class="text-danger mb-2">@Model.LoginError</p><br/> }
+        }
+        <div class="form-group-1">
+            <h3>Personal Information</h3>
+            <label class="label-color">Title</label>
+            @Html.DropDownListFor(m => m.Title, new SelectList(Enum.GetValues(typeof(Title))), new { @placeholder = "Title" })
+            @Html.TextBoxFor(m => m.Fname, new { @placeholder = "First Name", @class = "fname", @id = "fname", @required = "required" })
+            @Html.TextBoxFor(m => m.Lname, new { @placeholder = "Last Name", @class = "lname", @id = "lname", @required = "required" })
+            @Html.TextBoxFor(m => m.BVN, new { @placeholder = "BVN", @class = "bvn", @id = "bvn", @required = "required" })
+            @Html.TextBoxFor(m => m.NIN, new { @placeholder = "NIN", @class = "nin", @id = "nin", @required = "required" })
+            @Html.TextBoxFor(m => m.Occupation, new { @placeholder = "Occupation", @class = "occupation", @id = "occupation", @required = "required" })
+            <label class="label-color">Date of Birth</label>
+            @Html.TextBoxFor(m => m.DateofBirth, "{0:d MMM yyyy}", new { type = "date", @placeholder = "DOB", @class = "dob", @id = "dob", @required = "required" })
+            <label class="label-color">Gender</label>
+            @Html.DropDownListFor(m => m.GenderSelected, new SelectList(Enum.GetValues(typeof(Gender))), new { @placeholder = "Gender" })
+            <label class="label-color">Marital Status</label>
+            @Html.DropDownListFor(m => m.MaritalStatusSelected, new SelectList(Enum.GetValues(typeof(MaritalStatus))), new { @placeholder = "Marital Status" })
+        </div>
+        <div class="form-group-1"> 
+            <h3>Contact Information</h3>
+            @Html.TextBoxFor(m => m.Email, new { @placeholder = "Email", @required = "required" })
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @placeholder = "Phone Number", @required = "required" })
+            @Html.TextBoxFor(m => m.Address, new { @placeholder = "Home Address", @required = "required" })
+            @Html.TextBoxFor(m => m.State, new { @placeholder = "State", @required = "required" })
+            @Html.TextBoxFor(m => m.Country, new { @placeholder = "Country", @required = "required" })
+        </div><br />
+        <div class="form-group-2">
+            <h3>Means of Identification</h3>
+            @Html.TextBoxFor(m => m.ID_Doc, new { type = "file", @required = "required" })
+        </div>
+        <div class="form-check">
+            @Html.TextBoxFor(m => m.Agree, new { type = "checkbox" })
+            @Html.LabelFor(m => m.Agree)
+        </div>
+        <div class="form-submit">
+            <input type="submit" name="submit" id="submit" class="submit" value="Submit Form" />
+        </div>
+    </div>
+}
